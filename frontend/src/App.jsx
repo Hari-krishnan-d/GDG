@@ -82,9 +82,7 @@ export default function App() {
           <Route
             path="/*"
             element={
-              <ProtectedRoute>
-                <AuthenticatedShell apiOnline={apiOnline} />
-              </ProtectedRoute>
+              <AuthenticatedShell apiOnline={apiOnline} />
             }
           />
         </Routes>
