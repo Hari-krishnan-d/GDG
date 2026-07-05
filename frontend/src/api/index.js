@@ -2,9 +2,11 @@ import axios from 'axios';
 import { getToken } from '../auth.js';
 
 // ─── Axios client ────────────────────────────────────────────────────────────
+// FORCE MOCK MODE: Pointing to an invalid URL so all requests fail instantly
+// and trigger the mockData catch blocks below.
 const api = axios.create({
-  baseURL: '/api',
-  timeout: 8000,
+  baseURL: 'http://force-mock-mode.local/api',
+  timeout: 1000, // Short timeout for instant fallback
   headers: { 'Content-Type': 'application/json' },
 });
 
