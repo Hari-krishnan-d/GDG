@@ -75,31 +75,34 @@ app.use((err, req, res, _next) => {
 });
 
 // ────────────────────────────────────────────
-// Start server + cron jobs
+// Start server (local only — Vercel handles listen automatically)
 // ────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log('');
-  console.log('╔═══════════════════════════════════════════════════╗');
-  console.log('║      Smart Health PHC/CHC AI Management API       ║');
-  console.log('╠═══════════════════════════════════════════════════╣');
-  console.log(`║  Server running on  → http://localhost:${PORT}       ║`);
-  console.log(`║  AI Engine URL      → ${process.env.AI_ENGINE_URL || 'http://localhost:8000'}      ║`);
-  console.log(`║  Database           → ${process.env.DB_NAME || 'smart_health'}@${process.env.DB_HOST || 'localhost'}     ║`);
-  console.log('║                                                   ║');
-  console.log('║  Endpoints:                                       ║');
-  console.log('║   GET  /health                                    ║');
-  console.log('║   *    /api/medicines                             ║');
-  console.log('║   *    /api/beds                                  ║');
-  console.log('║   *    /api/staff                                 ║');
-  console.log('║   *    /api/attendance                            ║');
-  console.log('║   *    /api/patients                              ║');
-  console.log('║   *    /api/forecast                              ║');
-  console.log('║   GET  /api/dashboard/summary                     ║');
-  console.log('╚═══════════════════════════════════════════════════╝');
-  console.log('');
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log('');
+    console.log('╔═══════════════════════════════════════════════════╗');
+    console.log('║      Smart Health PHC/CHC AI Management API       ║');
+    console.log('╠═══════════════════════════════════════════════════╣');
+    console.log(`║  Server running on  → http://localhost:${PORT}       ║`);
+    console.log(`║  AI Engine URL      → ${process.env.AI_ENGINE_URL || 'http://localhost:8000'}      ║`);
+    console.log(`║  Database           → ${process.env.DB_NAME || 'smart_health'}@${process.env.DB_HOST || 'localhost'}     ║`);
+    console.log('║                                                   ║');
+    console.log('║  Endpoints:                                       ║');
+    console.log('║   GET  /health                                    ║');
+    console.log('║   *    /api/medicines                             ║');
+    console.log('║   *    /api/beds                                  ║');
+    console.log('║   *    /api/staff                                 ║');
+    console.log('║   *    /api/attendance                            ║');
+    console.log('║   *    /api/patients                              ║');
+    console.log('║   *    /api/forecast                              ║');
+    console.log('║   GET  /api/dashboard/summary                     ║');
+    console.log('╚═══════════════════════════════════════════════════╝');
+    console.log('');
 
-  // Start scheduled cron jobs
-  startCronJobs();
-});
+    // Start scheduled cron jobs (local only; Vercel uses vercel.json crons)
+    startCronJobs();
+  });
+}
 
+// Export for Vercel serverless handler
 module.exports = app;
