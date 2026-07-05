@@ -1,4 +1,4 @@
-# 🏥 SmartHealth — PHC/CHC Real-Time AI Management System
+# 🏥 Prototype SmartHealth — PHC/CHC Real-Time AI Management System
 
 A full-stack, AI-driven management dashboard for Primary Health Centres (PHCs) and Community Health Centres (CHCs). Features real-time medicine stock tracking, bed availability, geofenced doctor attendance, and XGBoost-powered 7-day forecasting for patient footfall and medicine stockouts.
 
